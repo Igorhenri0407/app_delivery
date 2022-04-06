@@ -1,0 +1,153 @@
+<Manager>:
+    LoginScreen:
+        name: "login"
+    HomePage:
+        name: "home_page"
+    ResetPassword:
+        name: "reset_password"
+    Register:
+        name: "register"
+<LoginScreen>:
+    FloatLayout:
+        Image:
+            source: "icones/Logo_user.jpeg"
+            size_hint: (.4, .4)
+            pos_hint: {"center_x": .5, "center_y": .78}
+        MDLabel:
+            text: "Bem Vindo!"
+            pos_hint: {"center_x": .5, "center_y": .62}
+            halign: "center"
+            bold: True
+            font_style: "H5"
+            id:bem_vindo
+
+        MDLabel:
+            text: "Faça Login para Continuar."
+            pos_hint: {"center_x": .5, "center_y": .58}
+            halign: "center"
+            font_style: "Caption"
+        MDTextField:
+            hint_text: "Digite seu Email"
+            size_hint_x: .8
+            pos_hint: {"center_x": .5, "center_y": .5}
+            icon_right: "email-send-outline"
+            icon_right_color: app.theme_cls.primary_color
+            id: text_email
+        MDTextField:
+            hint_text: "Digite sua Senha"
+            size_hint_x: .8
+            pos_hint: {"center_x": .5, "center_y": .4}
+            icon_right: "lock-open-remove-outline"
+            password: True
+            icon_right_color: app.theme_cls.primary_color
+            id: text_password
+        MDTextButton:
+            text: "Redefinir Senha."
+            pos_hint: {"center_x": .72, "center_y": .33}
+            theme_text_color: "Custom"
+            text_color: 105/255.0, 43/255.0, 173/255.0, 1
+            on_release: app.root.current = "reset_password"
+        MDFillRoundFlatIconButton:
+            text: "Login"
+            font_size: 20
+            elevation: 8
+            theme_text_color: "Custom"
+            text_color: 254/255.0, 254/255.0, 254/255.0, 1
+            md_bg_color: 105/255.0, 43/255.0, 173/255.0, 1
+            pos_hint: {"center_x": .5, "center_y": .23}
+            size_hint_x: .6
+            icon: "login"
+            on_release: root.try_sign_in()
+        MDRaisedButton:
+            text: "Cadastre-se"
+            font_size: 17
+            pos_hint: {"center_x": .5, "center_y": .13}
+            md_bg_color: 105/255.0, 43/255.0, 173/255.0, 1
+            text_color: 1, 1, 1, 1
+            on_release: app.root.current = "register"
+
+<HomePage>:
+    FloatLayout:
+        orientation: "vertical"
+        MDToolbar:
+            pos_hint: {"top": 1}
+            left_action_items: [["arrow-left", lambda x: root.callback()]]
+            specific_text_color: app.theme_cls.primary_color
+            md_bg_color: 1, 1, 1, 1
+        MDLabel:
+            text: "Bem vindo ao seu Painel"
+            halign: "center"
+            bold: True
+            font_size: 20
+        
+<ResetPassword>:
+    FloatLayout:
+        orientation: "vertical"
+        MDToolbar:
+            pos_hint: {"top": 1}
+            left_action_items: [["arrow-left", lambda x: root.callback()]]
+            specific_text_color: app.theme_cls.primary_color
+            md_bg_color: 1, 1, 1, 1
+        MDLabel:
+            text: "Digite seu Email para Redefinir sua Senha"
+            font_size: 18
+            bold: True
+            pos_hint: {"center_x": .5, "center_y": .65}
+            halign: "center"
+            id: text_redefined
+        MDTextField:
+            hint_text: "Email"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint_x: .8
+            icon_right: "email"
+            icon_right_color: app.theme_cls.primary_color
+            id: email_confirm
+        MDRaisedButton:
+            text: "Redefinir"
+            font_size: 17
+            pos_hint: {"center_x": .5, "center_y": .13}
+            md_bg_color: 105/255.0, 43/255.0, 173/255.0, 1
+            text_color: 1, 1, 1, 1
+            on_release: root.send_email_confirm()
+<Register>:
+    FloatLayout:
+        MDToolbar:
+            pos_hint: {"top": 1}
+            left_action_items: [["arrow-left", lambda x: root.callback()]]
+            specific_text_color: app.theme_cls.primary_color
+            md_bg_color: 1, 1, 1, 1
+        MDLabel:
+            text: "Cadastre-se"
+            font_size: 24
+            bold: True
+            pos_hint: {"center_x": .5, "center_y": .65}
+            halign: "center"
+            id: label_register
+        MDTextField:
+            hint_text: "Email"
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint_x: .8
+            icon_right: "email"
+            icon_right_color: app.theme_cls.primary_color
+            id: email_register
+        MDTextField:
+            hint_text: "Senha"
+            pos_hint: {"center_x": .5, "center_y": .4}
+            size_hint_x: .8
+            icon_right: "lock"
+            icon_right_color: app.theme_cls.primary_color
+            id: password_register
+        MDTextField:
+            hint_text: "Confirmar Senha"
+            pos_hint: {"center_x": .5, "center_y": .3}
+            size_hint_x: .8
+            icon_right: "lock"
+            icon_right_color: app.theme_cls.primary_color
+            id: password_register_confirm
+        MDRaisedButton:
+            text: "Cadastrar"
+            font_size: 17
+            pos_hint: {"center_x": .5, "center_y": .17}
+            md_bg_color: 135/255,57/255,187/255,1
+            text_color: 1, 1, 1, 1
+            on_release: root.validate_info()
